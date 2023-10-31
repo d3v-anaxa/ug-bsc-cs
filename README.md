@@ -9,7 +9,7 @@
 
   - Prefix/Infix/Postfix Expression 
     - [Link1]( https://www.geeksforgeeks.org/convert-infix-expression-to-postfix-expression/ ) 
-    - [Link2]( https://www geeksforgeeks.org/convert-infix-prefix-notation/ ) 
+    - [Link2]( https://www.geeksforgeeks.org/convert-infix-prefix-notation/ ) 
     - [Link3]( https://www.geeksforgeeks.org/evaluation-of-postfix-expression/ )
   - [Doubly linked list [Create-Insert]]( https://www.javatpoint.com/doubly-linked-list )
   - [Binary Search Tree]( https://www.geeksforgeeks.org/binary-search-tree-data-structure/ )
