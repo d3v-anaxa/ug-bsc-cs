@@ -7,7 +7,10 @@
 
 ## SEPT 27, 2023 ---> PM [CMSACOR05T]
 
-  - Prefix/Infix/Postfix Expression [Link1]( https://www.geeksforgeeks.org/convert-infix-expression-to-postfix-expression/ ) [Link2]( https://www geeksforgeeks.org/convert-infix-prefix-notation/ ) [Link3]( https://www.geeksforgeeks.org/evaluation-of-postfix-expression/ )
+  - Prefix/Infix/Postfix Expression 
+    - [Link1]( https://www.geeksforgeeks.org/convert-infix-expression-to-postfix-expression/ ) 
+    - [Link2]( https://www geeksforgeeks.org/convert-infix-prefix-notation/ ) 
+    - [Link3]( https://www.geeksforgeeks.org/evaluation-of-postfix-expression/ )
   - [Doubly linked list [Create-Insert]]( https://www.javatpoint.com/doubly-linked-list )
   - [Binary Search Tree]( https://www.geeksforgeeks.org/binary-search-tree-data-structure/ )
   - [PreOrder [Root-Left-Right]/ InOrder [Left-Root-Right]/ PostOrder [Left-Right-Root] in BST]( https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/ )
