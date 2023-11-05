@@ -1,4 +1,9 @@
-# Semester-III Lecture Notes
+ ____  _____ __  __ _____ ____ _____ _____ ____      ___ ___ ___ 
+/ ___|| ____|  \/  | ____/ ___|_   _| ____|  _ \    |_ _|_ _|_ _|
+\___ \|  _| | |\/| |  _| \___ \ | | |  _| | |_) |____| | | | | | 
+ ___) | |___| |  | | |___ ___) || | | |___|  _ <_____| | | | | | 
+|____/|_____|_|  |_|_____|____/ |_| |_____|_| \_\   |___|___|___|
+                                                                 
 
 ## SEPT 20, 2023 ---> PM [CMSACOR05T]
 
@@ -24,3 +29,11 @@
   - Shortest Remaining Time First (SRTF)
   - Round Robin
   - Priority Scheduling
+
+## NOV 03, 2023 ---> PM [CMSACOR06T]
+
+  - [Computer Networking](https://www.geeksforgeeks.org/basics-computer-networking/)
+  - [Transmission Modes in Computer Networks (Simplex, Half-Duplex and Full-Duplex)](https://www.geeksforgeeks.org/transmission-modes-computer-networks/)
+  - [OSI Model](https://www.geeksforgeeks.org/open-systems-interconnection-model-osi/)
+  - [Transmission Impairment in Data Communication](https://www.geeksforgeeks.org/transmission-impairment-in-data-communication/)
+  - [Network Topoligy](https://www.geeksforgeeks.org/types-of-network-topology/)
