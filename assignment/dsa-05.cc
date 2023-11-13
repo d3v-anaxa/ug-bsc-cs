@@ -187,3 +187,71 @@ int main(void){
     }   cll.display();
     return 0;
 }
+
+/*
+ * OUTPUT
+==100775== Memcheck, a memory error detector
+==100775== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==100775== Using Valgrind-3.21.0 and LibVEX; rerun with -h for copyright info
+==100775== Command: ./a.out
+==100775== 
+Elements [20] [HEAD : 0x4dfd670] [TAIL : 0x4dfd080]  524288 262144 131072 65536 32768 16384 8192 4096 2048 1024 512 256 128 64 32 16 8 4 2 1
+Reversed successfully!
+Elements [20] [HEAD : 0x4dfd080] [TAIL : 0x4dfd670]  1 2 4 8 16 32 64 128 256 512 1024 2048 4096 8192 16384 32768 65536 131072 262144 524288
+Removed : 524288
+Removed : 262144
+Removed : 131072
+Removed : 65536
+Removed : 32768
+Removed : 16384
+Removed : 8192
+Removed : 4096
+Removed : 2048
+Removed : 1024
+Removed : 512
+Removed : 256
+Removed : 128
+Removed : 64
+Removed : 32
+Removed : 16
+Removed : 8
+Removed : 4
+Removed : 2
+Removed : 1
+No element to display!
+Elements [0] [HEAD : 0] [TAIL : 0] 
+Elements [20] [HEAD : 0x4dfe700] [TAIL : 0x4dfecf0]  -2147483648 -1073741824 -536870912 -268435456 -134217728 -67108864 -33554432 -16777216 -8388608 -4194304 -2097152 -1048576 -524288 -262144 -131072 -65536 -32768 -16384 -8192 -4096
+Target -4096  found!
+Target 4095 not found!
+Removed : -2147483648
+Removed : -1073741824
+Removed : -536870912
+Removed : -268435456
+Removed : -134217728
+Removed : -67108864
+Removed : -33554432
+Removed : -16777216
+Removed : -8388608
+Removed : -4194304
+Removed : -2097152
+Removed : -1048576
+Removed : -524288
+Removed : -262144
+Removed : -131072
+Removed : -65536
+Removed : -32768
+Removed : -16384
+Removed : -8192
+Removed : -4096
+No element to display!
+Elements [0] [HEAD : 0] [TAIL : 0] 
+==100775== 
+==100775== HEAP SUMMARY:
+==100775==     in use at exit: 0 bytes in 0 blocks
+==100775==   total heap usage: 42 allocs, 42 frees, 78,464 bytes allocated
+==100775== 
+==100775== All heap blocks were freed -- no leaks are possible
+==100775== 
+==100775== For lists of detected and suppressed errors, rerun with: -s
+==100775== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+*/
