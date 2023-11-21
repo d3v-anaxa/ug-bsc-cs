@@ -1,9 +1,9 @@
-// Write a program to search an element from a list. Give user the option to perform Linear
-// or Binary search. Use Template functions.
+/*
+   Write a program to search an element from a list. Give user the option to perform Linear
+   or Binary search. Use Template functions.
+*/
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
 template<typename T>
@@ -75,16 +75,18 @@ int main(void){
     return 0;
 }
 
-// Output
-// Enter number of list elements -> 4
-// Enter element-0 -> 10
-// Enter element-1 -> 20
-// Enter element-2 -> 30
-// Enter element-3 -> 40
-// Array -> 10 20 30 40 
-// Enter target element -> 20
-// Select searching algorithm
-// 1. Linear search 
-// 2. Binary search 
-// Enter choice -> 2
-// Binary search -> index-1
+/*
+   Output
+   Enter number of list elements -> 4
+   Enter element-0 -> 10
+   Enter element-1 -> 20
+   Enter element-2 -> 30
+   Enter element-3 -> 40
+   Array -> 10 20 30 40 
+   Enter target element -> 20
+   Select searching algorithm
+   1. Linear search 
+   2. Binary search 
+   Enter choice -> 2
+   Binary search -> index-1
+   */
