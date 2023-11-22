@@ -226,37 +226,41 @@ int main(void){
     return 0;
 }
 
-/* OUTPUT 1 
+/*
+   [LINKED LIST]
    Linked List Operations!
    [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
    Enter choice : 1
-   Enter value : 10
-   List +>> 10
+   Enter value : -10
+   List +>> -10
+   Linked List Operations!
+   [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
+   Enter choice : 1
+   Enter value : -20
+   List +>> -20
    Linked List Operations!
    [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
    Enter choice : 2
-   Enter value : -30
-   List <<+ -30
+   Enter value : 20
+   List <<+ 20
    Linked List Operations!
    [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
-   Enter choice : 1
-   Enter value : 11
-   List +>> 11
-   Linked List Operations!
-   [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
-   Enter choice : 1
-   Enter value : 0
-   List +>> 0
+   Enter choice : 2
+   Enter value : 80
+   List <<+ 80
    Linked List Operations!
    [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
    Enter choice : 3
-   Enter value : -10
-   Target not found
-   Linked List Operations!
-   [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
-   Enter choice : 3
-   Enter value : -30
+   Enter value : 80
    Target found
+   Linked List Operations!
+   [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
+   Enter choice : 4
+   Deleted Node [-<<]
+   Linked List Operations!
+   [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
+   Enter choice : 7
+   >>  -10 20 80
    Linked List Operations!
    [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
    Enter choice : 5
@@ -264,7 +268,7 @@ int main(void){
    Linked List Operations!
    [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
    Enter choice : 7
-   >>  0 11 10
+   >>  -10 20
    Linked List Operations!
    [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
    Enter choice : 6
@@ -272,7 +276,7 @@ int main(void){
    Linked List Operations!
    [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
    Enter choice : 7
-   >>  10 11 0
+   >>  20 -10
    Linked List Operations!
    [1: insert to head, 2: insert to tail, 3: search, 4: remove from head, 5: remove from tail, 6: reverse list, 7: display list]
    Enter choice : 10
