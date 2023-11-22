@@ -37,12 +37,6 @@ class CircularLinkedList{
             }
         }
 
-    public:
-        CircularLinkedList(){};
-        ~CircularLinkedList(){
-            clean();
-        };
-
         void addToFront(T val){
             if(head == 0x0){
                 Node *_t = new Node(val, 0x0);
@@ -113,22 +107,6 @@ class CircularLinkedList{
             length--;
         }
 
-        void display(){
-            if (head == 0x0){
-                cout << "No element to display!\n";
-            }
-            cout 
-                << "Elements "
-                << "[" << length << "] "
-                << "[HEAD : " << head << "] "
-                << "[TAIL : " << tail << "] ";
-            Node *curr = head;
-            for(int i = 0; i < length; i++){
-                cout << " " << curr->val;
-                curr = curr->next;
-            }   cout << endl;
-        }
-
         int search(T target){
             Node* curr = head;
             for(int i = 0; i < length; i++){
@@ -153,105 +131,126 @@ class CircularLinkedList{
             tail->next = prev;
             cout << "Reversed successfully!\n";
         }
+
+    public:
+        CircularLinkedList(){};
+        ~CircularLinkedList(){
+            clean();
+        };
+
+        void display(){
+            if (head == 0x0){
+                cout << "No element to display!\n";
+            }
+            cout 
+                << "Elements "
+                << "[" << length << "] "
+                << "[HEAD : " << head << "] "
+                << "[TAIL : " << tail << "] ";
+            Node *curr = head;
+            for(int i = 0; i < length; i++){
+                cout << " " << curr->val;
+                curr = curr->next;
+            }   cout << endl;
+        }
+
+        bool menu(){
+            T value;
+            int option = 0;
+            cout 
+                << "Circular Singly linked list operations!\n"
+                << "[1. Add to head, "
+                << "2. Add to tail, "
+                << "3. Search, "
+                << "4. Remove from head, "
+                << "5. Remove from tail, "
+                << "6. Reverse list, "
+                << "7. Display]\n"
+                << "Enter  choice : ";
+            cin >> option;
+            switch (option){
+                case 1: cout << "Enter value : " && cin >> value;
+                        this->addToFront(value);
+                        break;
+                case 2: cout << "Enter value : " && cin >> value;
+                        this->addToEnd(value);
+                        break;
+                case 3: cout << "Enter value : " && cin >> value;
+                        cout << (this->search(value) == -1 ? "Target not found!\n" : "Target found!\n");
+                        break;
+                case 4: this->rmFromFront();
+                        break;
+                case 5: this->rmFromEnd();
+                        break;
+                case 6: this->reverse();
+                        break;
+                case 7: this->display();
+                        break;
+                default:
+                        return false;
+            }
+            return true;
+        }
+
 };
 
 int main(void){
     CircularLinkedList<int> cll;
+    bool cont = true;
+    do {
+        cont = cll.menu();
+    } while(cont);
 
-    // ADD TO FRONT
-    for (int i = 0; i < 20; i++){
-        cll.addToFront(1 << i);
-    }   cll.display();
-
-    // REVERSAL
-    cll.reverse();
-    cll.display();
-
-    // RM FROM END
-    for (int i = 0; i < 20; i++){
-        cll.rmFromEnd();
-    }   cll.display();
-
-    // ADD TO END
-    for (int i = 0; i < 20; i++){
-        cll.addToEnd(1 << 31 >> i);
-    }   cll.display();
-
-    // SEARCH
-    cout << "Target " << -4096 << " " << (cll.search(-4096) == -1 ? "not" : "") << " found!\n";
-    cout << "Target " << 4095 << " " << (cll.search(4095) == -1 ? "not" : "") << " found!\n";
-
-    // RM FROM FRONT
-    for (int i = 0; i < 20; i++){
-        cll.rmFromFront();
-    }   cll.display();
     return 0;
 }
 
 /*
- * OUTPUT
-==100775== Memcheck, a memory error detector
-==100775== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==100775== Using Valgrind-3.21.0 and LibVEX; rerun with -h for copyright info
-==100775== Command: ./a.out
-==100775== 
-Elements [20] [HEAD : 0x4dfd670] [TAIL : 0x4dfd080]  524288 262144 131072 65536 32768 16384 8192 4096 2048 1024 512 256 128 64 32 16 8 4 2 1
-Reversed successfully!
-Elements [20] [HEAD : 0x4dfd080] [TAIL : 0x4dfd670]  1 2 4 8 16 32 64 128 256 512 1024 2048 4096 8192 16384 32768 65536 131072 262144 524288
-Removed : 524288
-Removed : 262144
-Removed : 131072
-Removed : 65536
-Removed : 32768
-Removed : 16384
-Removed : 8192
-Removed : 4096
-Removed : 2048
-Removed : 1024
-Removed : 512
-Removed : 256
-Removed : 128
-Removed : 64
-Removed : 32
-Removed : 16
-Removed : 8
-Removed : 4
-Removed : 2
-Removed : 1
-No element to display!
-Elements [0] [HEAD : 0] [TAIL : 0] 
-Elements [20] [HEAD : 0x4dfe700] [TAIL : 0x4dfecf0]  -2147483648 -1073741824 -536870912 -268435456 -134217728 -67108864 -33554432 -16777216 -8388608 -4194304 -2097152 -1048576 -524288 -262144 -131072 -65536 -32768 -16384 -8192 -4096
-Target -4096  found!
-Target 4095 not found!
-Removed : -2147483648
-Removed : -1073741824
-Removed : -536870912
-Removed : -268435456
-Removed : -134217728
-Removed : -67108864
-Removed : -33554432
-Removed : -16777216
-Removed : -8388608
-Removed : -4194304
-Removed : -2097152
-Removed : -1048576
-Removed : -524288
-Removed : -262144
-Removed : -131072
-Removed : -65536
-Removed : -32768
-Removed : -16384
-Removed : -8192
-Removed : -4096
-No element to display!
-Elements [0] [HEAD : 0] [TAIL : 0] 
-==100775== 
-==100775== HEAP SUMMARY:
-==100775==     in use at exit: 0 bytes in 0 blocks
-==100775==   total heap usage: 42 allocs, 42 frees, 78,464 bytes allocated
-==100775== 
-==100775== All heap blocks were freed -- no leaks are possible
-==100775== 
-==100775== For lists of detected and suppressed errors, rerun with: -s
-==100775== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+   Circular Singly linked list operations!
+   [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+   Enter  choice : 1
+   Enter value : 10
+   Circular Singly linked list operations!
+   [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+   Enter  choice : 1
+   Enter value : 20
+   Circular Singly linked list operations!
+   [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+   Enter  choice : 2
+   Enter value : 50
+   Circular Singly linked list operations!
+   [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+   Enter  choice : 2
+   Enter value : 90
+   Circular Singly linked list operations!
+   [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+   Enter  choice : 7
+   Elements [4] [HEAD : 0x557472ec0af0] [TAIL : 0x557472ec0b30]  20 10 50 90
+   Circular Singly linked list operations!
+   [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+   Enter  choice : 6
+   Reversed successfully!
+   Circular Singly linked list operations!
+   [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+   Enter  choice : 7
+   Elements [4] [HEAD : 0x557472ec0b30] [TAIL : 0x557472ec0af0]  90 50 10 20
+   Circular Singly linked list operations!
+   [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+   Enter  choice : 4
+Removed : 90
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 5
+Removed : 20
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 7
+Elements [2] [HEAD : 0x557472ec0b10] [TAIL : 0x557472ec0ad0]  50 10
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 3
+Enter value : 10
+Target found!
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 10
 */
