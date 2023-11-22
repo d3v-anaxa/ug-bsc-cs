@@ -1,5 +1,5 @@
 // Implement Linked List using templates. Include functions for insertion, deletion and
-// search of a number, reverse the list and concatenate two linked lists.
+// search of a number, reverse the list.
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -129,6 +129,21 @@ class LinkedList{
                 << endl;
         }
 
+    public:
+        // CONSTRUCTOR
+        LinkedList(){}
+
+        // DESTRUCTOR
+        ~LinkedList(){
+            clean(head);
+            head = 0x0;
+               cout 
+               << RED
+               << "[LIST CLEANED]\n"
+               << CLEAN;
+            length = 0;
+        }
+
         // Display
         int display(){
             cout << YELLOW;
@@ -149,21 +164,6 @@ class LinkedList{
                 << CLEAN
                 << endl;
             return length;
-        }
-
-    public:
-        // CONSTRUCTOR
-        LinkedList(){}
-
-        // DESTRUCTOR
-        ~LinkedList(){
-            clean(head);
-            head = 0x0;
-            cout 
-                << RED
-                << "[LIST CLEANED]\n"
-                << CLEAN;
-            length = 0;
         }
 
         // MENU
@@ -217,10 +217,11 @@ class LinkedList{
 };
 
 int main(void){
-    LinkedList<int> ll;
+    LinkedList<int> l1;
     bool cont = true;
+    cout << GREEN << "[LINKED LIST]\n" << endl;
     do {
-        cont = ll.menu();
+        cont = l1.menu();
     } while(cont);
     return 0;
 }
