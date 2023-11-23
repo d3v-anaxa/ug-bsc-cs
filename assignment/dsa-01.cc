@@ -3,12 +3,41 @@
    or Binary search. Use Template functions.
 */
 
+/* ALGO
+   Linear Search:
+   1. Initialize a list 'vector' with elements.
+   2. Initialize a variable 'searchElement' with the element to be searched.
+   3. For each 'element' in 'vector':
+   3.1. If 'element' is equal to 'searchElement':
+   3.1.1. Print "Element found at position", current index + 1.
+   3.1.2. End the search.
+   4. If the loop completes without finding the 'searchElement':
+   4.1. Print "Element not found in the vector."
+
+   Binary Search:
+   1. Initialize a sorted list 'vector' with elements.
+   2. Initialize variables 'left' and 'right' to point to the start and end of 'vector' respectively.
+   3. Initialize a variable 'searchElement' with the element to be searched.
+   4. While 'left' is less than or equal to 'right':
+   4.1. Calculate 'mid' as the average of 'left' and 'right'.
+   4.2. If 'searchElement' is equal to the element at 'mid' in 'vector':
+   4.2.1. Print "Element found at position", mid + 1.
+   4.2.2. End the search.
+   4.3. Else if 'searchElement' is less than the element at 'mid' in 'vector':
+   4.3.1. Update 'right' to 'mid - 1'.
+   4.4. Else:
+   4.4.1. Update 'left' to 'mid + 1'.
+   5. If the loop completes without finding the 'searchElement':
+   a. Print "Element not found in the vector."
+
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
 template<typename T>
 int LinearSearch(const std::vector<T>& arr, const T& key){
-    for (int i = 0; i < arr.size(); i++)
+    for (int i = 0; i < (int)arr.size(); i++)
         if (key == arr[i]) return i;
     return -1;
 }
@@ -34,7 +63,7 @@ int main(void){
     int target;
 
     cout << "Enter number of list elements -> " && cin >> size;
-    for(int i = 0; i < size; i++){
+    for(int i = 0; i < (int)size; i++){
         int elem;
         cout << "Enter element-" << i << " -> " && cin >> elem;
         array.push_back(elem);
@@ -75,8 +104,7 @@ int main(void){
     return 0;
 }
 
-/*
-   Output
+/* OUTPUT
    Enter number of list elements -> 4
    Enter element-0 -> 10
    Enter element-1 -> 20
@@ -89,4 +117,19 @@ int main(void){
    2. Binary search 
    Enter choice -> 2
    Binary search -> index-1
+   */
+
+/* OUTPUT
+   Enter number of list elements -> 4
+   Enter element-0 -> -10
+   Enter element-1 -> 10
+   Enter element-2 -> 20
+   Enter element-3 -> 30
+   Array -> -10 10 20 30
+   Enter target element -> 20
+   Select searching algorithm
+   1. Linear search
+   2. Binary search
+   Enter choice -> 2
+   Binary search -> index-2
    */
