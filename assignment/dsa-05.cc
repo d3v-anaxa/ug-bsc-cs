@@ -1,7 +1,63 @@
 /*
-   Implement Circular Linked List using templates. Include functions for insertion,
-   deletion and search of a number, reverse the list
+   Implement Circular Linked List using templates. Include functions for insertion, deletion and search of a number, reverse the list
 */
+
+/* ALGO
+   1. Define Node structure:
+   1.1 Node:
+   1.1.1 data
+   1.1.2 next
+
+   2. Define CircularSinglyLinkedList class:
+   2.1 CircularSinglyLinkedList:
+   2.1.1 head
+
+   3. Define methods for CircularSinglyLinkedList class:
+   3.1 __init__():
+   3.1.1 Initialize head to None
+
+   3.2 add_to_head(data):
+   3.2.1 Create a new node with the given data
+   3.2.2 If the list is empty, set head to the new node
+   3.2.3 Otherwise, set the next of the new node to the current head
+   3.2.4 Update head to the new node
+   3.2.5 Set the next of the last node to the new head to make it circular
+
+   3.3 add_to_tail(data):
+   3.3.1 Create a new node with the given data
+   3.3.2 If the list is empty, set head to the new node
+   3.3.3 Otherwise, find the last node and set its next to the new node
+   3.3.4 Set the next of the new node to the head to make it circular
+
+   3.4 remove_from_head():
+   3.4.1 If the list is empty, return an error or do nothing
+   3.4.2 If there's only one node, set head to None
+   3.4.3 Otherwise, update head to the next of the current head
+   3.4.4 Find the last node and set its next to the new head
+
+   3.5 remove_from_tail():
+   3.5.1 If the list is empty, return an error or do nothing
+   3.5.2 If there's only one node, set head to None
+   3.5.3 Otherwise, find the second-to-last node and set its next to the head
+
+   3.6 reverse():
+   3.6.1 If the list is empty or has only one node, do nothing
+   3.6.2 Initialize three pointers: prev = None, current = head, next_node = None
+   3.6.3 Loop through the list until current is None
+   3.6.4 Set next_node to the next of current
+   3.6.5 Set the next of current to prev
+   3.6.6 Move prev to current, current to next_node
+   3.6.7 Update head to prev after the loop
+
+   3.7 search(element):
+   3.7.1 If the list is empty, return False
+   3.7.2 Initialize a pointer current to head
+   3.7.3 Loop through the list until current is None
+   3.7.4 If the data of current is equal to the element, return True
+   3.7.5 Move current to the next node
+   3.7.6 If the loop completes without finding the element, return False
+
+ */
 
 #include <iostream>
 using namespace std;
@@ -204,27 +260,77 @@ int main(void){
     return 0;
 }
 
-/*
-   Circular Singly linked list operations!
+/* OUTPUT
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 1
+Enter value : 10
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 2
+Enter value : 200
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 1
+Enter value : 300
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 2
+Enter value : 4000
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 7
+Elements [4] [HEAD : 0x5624fee2bb10] [TAIL : 0x5624fee2bb30]  300 10 200 4000
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 6
+Reversed successfully!
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 7
+Elements [4] [HEAD : 0x5624fee2bb30] [TAIL : 0x5624fee2bb10]  4000 200 10 300
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 4
+Removed : 4000
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 5
+Removed : 300
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 7
+Elements [2] [HEAD : 0x5624fee2baf0] [TAIL : 0x5624fee2bad0]  200 10
+Circular Singly linked list operations!
+[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+Enter  choice : 10
+*/
+
+/* OUTPUT
    [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
    Enter  choice : 1
    Enter value : 10
    Circular Singly linked list operations!
    [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
-   Enter  choice : 1
-   Enter value : 20
+   Enter  choice : 2
+   Enter value : -10
    Circular Singly linked list operations!
    [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
    Enter  choice : 2
-   Enter value : 50
+   Enter value : 40
    Circular Singly linked list operations!
    [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
    Enter  choice : 2
-   Enter value : 90
+   Enter value : -40
+   Circular Singly linked list operations!
+   [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
+   Enter  choice : 3
+   Enter value : 10
+   Target found!
    Circular Singly linked list operations!
    [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
    Enter  choice : 7
-   Elements [4] [HEAD : 0x557472ec0af0] [TAIL : 0x557472ec0b30]  20 10 50 90
+   Elements [4] [HEAD : 0x561c54f47ad0] [TAIL : 0x561c54f47b30]  10 -10 40 -40
    Circular Singly linked list operations!
    [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
    Enter  choice : 6
@@ -232,25 +338,8 @@ int main(void){
    Circular Singly linked list operations!
    [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
    Enter  choice : 7
-   Elements [4] [HEAD : 0x557472ec0b30] [TAIL : 0x557472ec0af0]  90 50 10 20
+   Elements [4] [HEAD : 0x561c54f47b30] [TAIL : 0x561c54f47ad0]  -40 40 -10 10
    Circular Singly linked list operations!
    [1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
-   Enter  choice : 4
-Removed : 90
-Circular Singly linked list operations!
-[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
-Enter  choice : 5
-Removed : 20
-Circular Singly linked list operations!
-[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
-Enter  choice : 7
-Elements [2] [HEAD : 0x557472ec0b10] [TAIL : 0x557472ec0ad0]  50 10
-Circular Singly linked list operations!
-[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
-Enter  choice : 3
-Enter value : 10
-Target found!
-Circular Singly linked list operations!
-[1. Add to head, 2. Add to tail, 3. Search, 4. Remove from head, 5. Remove from tail, 6. Reverse list, 7. Display]
-Enter  choice : 10
-*/
+   Enter  choice : 10
+   */
