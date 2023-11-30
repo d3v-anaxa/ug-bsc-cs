@@ -3,6 +3,20 @@
 */
 
 /* ALGO
+   1. Initialize:
+   1.1 Set the current time to 0.
+   1.2 Create a queue to hold the processes.
+   2. Input:
+   2.1 Receive a list of processes with their arrival times and burst times.
+   2.2 Sort the processes based on their arrival times.
+   3. Execution:
+   3.1 While there are processes in the queue:
+   3.2 Dequeue the process from the front of the queue.
+   3.3 Execute the process until completion.
+   3.4 Update the current time to reflect the completion of the process.
+   4. Output:
+   4.1 Display the turnaround time and waiting time for each process.
+   4.2 Calculate and display the average turnaround time and average waiting time.
 */
 
 #include <stdio.h>
@@ -18,7 +32,7 @@ typedef struct Job {
 } Job;
 
 void create_and_get_table(Job[]);
-void add_elements(Job[]);
+void set_at_bt_rands(Job[]);
 void display(Job[]);
 void sort(Job[]);
 void set_wt(Job[]);
@@ -38,7 +52,7 @@ int test_1(){
 }
 
 void create_and_get_table(Job arr[]){
-    add_elements(arr);
+    set_at_bt_rands(arr);
     sort(arr);
     set_wt(arr);
     set_tat(arr);
@@ -48,7 +62,7 @@ void create_and_get_table(Job arr[]){
     printf("Avg. TAT : %.2lf ms\n", get_avg_tat(arr));
 }
 
-void add_elements(Job arr[]){
+void set_at_bt_rands(Job arr[]){
     for(int i = 0; i < JOB_COUNT; i++){
         arr[i].PID = i+1;
         arr[i].AT = rand() % 10;
@@ -148,7 +162,9 @@ int main(void){
    PS5     9           8           87          78          70          
    Avg. WT : 29.50 ms
    Avg. TAT : 38.20 ms
+*/   
 
+/* OUTPUT
    [FCFS CPU SCHEDULING]
    PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)     
    PS5     0           8           8           8           0           
