@@ -24,7 +24,7 @@
 #include <time.h>
 
 enum {
-    JOB_COUNT = 10
+    JOB_COUNT = 5
 };
 
 typedef struct Job {
@@ -33,6 +33,7 @@ typedef struct Job {
 
 void create_and_get_table(Job[]);
 void set_at_bt_rands(Job[]);
+void set_at_bt_man(Job[]);
 void display(Job[]);
 void sort(Job[]);
 void set_wt(Job[]);
@@ -52,7 +53,7 @@ int test_1(){
 }
 
 void create_and_get_table(Job arr[]){
-    set_at_bt_rands(arr);
+    set_at_bt_man(arr);
     sort(arr);
     set_wt(arr);
     set_tat(arr);
@@ -67,6 +68,22 @@ void set_at_bt_rands(Job arr[]){
         arr[i].PID = i+1;
         arr[i].AT = rand() % 10;
         arr[i].BT = rand() % 20;
+        arr[i].CT = -1;
+        arr[i].WT = -1;
+        arr[i].TAT = -1;
+    }
+}
+
+void set_at_bt_man(Job arr[]){
+    int tmp;
+    for(int i = 0; i < JOB_COUNT; i++){
+        arr[i].PID = i+1;
+        printf("[PS%d] Enter arrival time : ", arr[i].PID);
+        scanf("%d", &tmp);
+        arr[i].AT = tmp;
+        printf("[PS%d] Enter Burst time : ", arr[i].PID);
+        scanf("%d", &tmp);
+        arr[i].BT = tmp;
         arr[i].CT = -1;
         arr[i].WT = -1;
         arr[i].TAT = -1;
