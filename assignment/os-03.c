@@ -1,17 +1,32 @@
 /*
-   Write program to implement Non-preemptive scheduling algorithm
- */
+   Write program to implement SJF scheduling algorithm
+*/
+
+/* ALGO
+   1. Initialize:
+   1.1 Set the current time to 0.
+   1.2 Create a queue to hold the processes.
+   2. Input:
+   2.1 Receive a list of processes with their arrival times and burst times.
+   2.2 Sort the processes based on their arrival times.
+   2.3 If two processes have the same arrival time then sort those processes based on their burst times.
+   3. Execution:
+   3.1 While there are processes in the queue:
+   3.2 Dequeue the process from the front of the queue.
+   3.3 Execute the process until completion.
+   3.4 Update the current time to reflect the completion of the process.
+   4. Output:
+   4.1 Display the turnaround time and waiting time for each process.
+   4.2 Calculate and display the average turnaround time and average waiting time.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-enum {
-    JOB_COUNT = 5
-};
-
+int JOB_COUNT = 0;
 typedef struct Job {
-    int PID, AT, BT, CT, TAT, WT, Priority;
+    int PID, AT, BT, CT, TAT, WT;
 } Job;
 
 void create_and_get_table(Job[]);
@@ -24,12 +39,13 @@ void set_tat(Job[]);
 void set_ct(Job[]);
 float get_avg_wt(Job[]);
 float get_avg_tat(Job[]);
-void get_gantt_chart(Job[]);
 
 int test_1(){
     srand(time(0));
+    printf("Enter Job count : ");
+    scanf("%d", &JOB_COUNT);
     Job arr[JOB_COUNT];
-    printf("[NON-PREEMPTIVE PRIORITY CPU SCHEDULING]\n");
+    printf("[SJF CPU SCHEDULING]\n");
     create_and_get_table(arr);
     // get_gantt_chart(arr);
     return 0;
@@ -67,9 +83,6 @@ void set_at_bt_man(Job arr[]){
         printf("[PS%d] Enter Burst time : ", arr[i].PID);
         scanf("%d", &tmp);
         arr[i].BT = tmp;
-        printf("[PS%d] Enter Priority : ", arr[i].PID);
-        scanf("%d", &tmp);
-        arr[i].Priority = tmp;
         arr[i].CT = -1;
         arr[i].WT = -1;
         arr[i].TAT = -1;
@@ -77,9 +90,9 @@ void set_at_bt_man(Job arr[]){
 }
 
 void display(Job arr[]){
-    printf("%-8s%-12s%-12s%-12s%-12s%-12s%-12s\n", "PID", "Priority" ,"AT (ms)", "BT (ms)", "CT (ms)", "TAT (ms)", "WT (ms)");
+    printf("%-8s%-12s%-12s%-12s%-12s%-12s\n", "PID", "AT (ms)", "BT (ms)", "CT (ms)", "TAT (ms)", "WT (ms)");
     for(int i = 0; i < JOB_COUNT; i++){
-        printf("PS%-6d%-12d%-12d%-12d%-12d%-12d%-12d\n", arr[i].PID, arr[i].Priority, arr[i].AT, arr[i].BT, arr[i].CT, arr[i].TAT, arr[i].WT);
+        printf("PS%-6d%-12d%-12d%-12d%-12d%-12d\n", arr[i].PID, arr[i].AT, arr[i].BT, arr[i].CT, arr[i].TAT, arr[i].WT);
     }
 }
 
@@ -88,7 +101,7 @@ void sort(Job arr[]){
     for(int i = 0; i < JOB_COUNT; i++){
         for(int j = i; j < JOB_COUNT; j++){
             if(arr[i].AT < arr[j].AT) continue;
-            if(arr[i].AT == arr[j].AT && arr[i].Priority <= arr[j].Priority) continue;
+            if(arr[i].AT == arr[j].AT && arr[i].BT <= arr[j].BT) continue;
             tmp = arr[i];
             arr[i] = arr[j];
             arr[j] = tmp;
@@ -137,50 +150,49 @@ float get_avg_tat(Job arr[]){
     return res;
 }
 
-// TODO: FIX
-void get_gantt_chart(Job arr[]){
-    int _t = 0;
-    printf("Gantt chart :\n");
-    for(int i = 0 ; i < JOB_COUNT; i++){
-        _t = arr[i].BT * 100 / arr[JOB_COUNT - 1].CT;
-        printf(">\033[47;30;01m%s%*d\033[00;00m", "PS", -_t, arr[i].PID );
-    }   printf("\n");
-}
-
 int main(void){
     return test_1();
 }
 
 /* OUTPUT
-   [FCFS CPU SCHEDULING]
-   PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)     
-   PS3     0           5           5           5           0           
-   PS8     0           5           10          10          5           
-   PS4     4           14          24          20          6           
-   PS7     5           5           29          24          19          
-   PS10    6           9           38          32          23          
-   PS9     7           10          48          41          31          
-   PS1     7           1           49          42          41          
-   PS2     8           18          67          59          41          
-   PS6     8           12          79          71          59          
-   PS5     9           8           87          78          70          
-   Avg. WT : 29.50 ms
-   Avg. TAT : 38.20 ms
-*/   
+Enter Job count : 3
+[SJF CPU SCHEDULING]
+[PS1] Enter arrival time : 0
+[PS1] Enter Burst time : 3
+[PS2] Enter arrival time : 1
+[PS2] Enter Burst time : 5
+[PS3] Enter arrival time : 1
+[PS3] Enter Burst time : 1
+PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)
+PS1     0           3           3           3           0
+PS3     1           1           4           3           2
+PS2     1           5           9           8           3
+Avg. WT : 1.67 ms
+Avg. TAT : 4.67 ms
+ */
 
 /* OUTPUT
-   [FCFS CPU SCHEDULING]
-   PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)     
-   PS5     0           8           8           8           0           
-   PS1     1           16          24          23          7           
-   PS7     2           4           28          26          22          
-   PS6     4           12          40          36          24          
-   PS4     4           16          56          52          36          
-   PS2     5           11          67          62          51          
-   PS9     6           0           67          61          61          
-   PS8     7           9           76          69          60          
-   PS3     8           10          86          78          68          
-   PS10    9           10          96          87          77          
-   Avg. WT : 40.60 ms
-   Avg. TAT : 50.20 
-*/
+Enter Job count : 6
+[SJF CPU SCHEDULING]
+[PS1] Enter arrival time : 0
+[PS1] Enter Burst time : 13
+[PS2] Enter arrival time : 2
+[PS2] Enter Burst time : 14
+[PS3] Enter arrival time : 1
+[PS3] Enter Burst time : 6
+[PS4] Enter arrival time : 0
+[PS4] Enter Burst time : 4
+[PS5] Enter arrival time : 7
+[PS5] Enter Burst time : 5
+[PS6] Enter arrival time : 1
+[PS6] Enter Burst time : 4
+PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)
+PS4     0           4           4           4           0
+PS1     0           13          17          17          4
+PS6     1           4           21          20          16
+PS3     1           6           27          26          20
+PS2     2           14          41          39          25
+PS5     7           5           46          39          34
+Avg. WT : 16.50 ms
+Avg. TAT : 24.17 ms
+ */
