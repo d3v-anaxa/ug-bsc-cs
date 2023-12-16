@@ -1,32 +1,30 @@
 /*
-   Write program to implement SJF scheduling algorithm
+   Write program to implement LJF scheduling algorithm
 */
 
 /* ALGO
-   1. Initialize:
-   1.1 Set the current time to 0.
-   1.2 Create a queue to hold the processes.
-   2. Input:
-   2.1 Receive a list of processes with their arrival times and burst times.
-   2.2 Sort the processes based on their arrival times.
-   2.3 If two processes have the same arrival time then sort those processes based on their burst times.
-   3. Execution:
-   3.1 While there are processes in the queue:
-   3.2 Dequeue the process from the front of the queue.
-   3.3 Execute the process until completion.
-   3.4 Update the current time to reflect the completion of the process.
-   4. Output:
-   4.1 Display the turnaround time and waiting time for each process.
-   4.2 Calculate and display the average turnaround time and average waiting time.
+1. Initialize:
+1.1 Set the current time to 0.
+1.2 Create a queue to hold the processes.
+2. Input:
+2.1 Receive a list of processes with their arrival times and burst times.
+2.2 Sort the processes based on their arrival times.
+2.3 If two processes have the same arrival time then sort those processes based on their burst times(longest processes first).
+3. Execution:
+3.1 While there are processes in the queue:
+3.2 Dequeue the process from the front of the queue.
+3.3 Execute the process until completion.
+3.4 Update the current time to reflect the completion of the process.
+4. Output:
+4.1 Display the turnaround time and waiting time for each process.
+4.2 Calculate and display the average turnaround time and average waiting time.
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-enum {
-    JOB_COUNT = 5
-};
+int JOB_COUNT = 0;
 
 typedef struct Job {
     int PID, AT, BT, CT, TAT, WT;
@@ -45,10 +43,11 @@ float get_avg_tat(Job[]);
 
 int test_1(){
     srand(time(0));
+    printf("Enter job count : ");
+    scanf("%d", &JOB_COUNT);
     Job arr[JOB_COUNT];
-    printf("[SJF CPU SCHEDULING]\n");
+    printf("[LJF CPU SCHEDULING]\n");
     create_and_get_table(arr);
-    // get_gantt_chart(arr);
     return 0;
 }
 
@@ -102,7 +101,7 @@ void sort(Job arr[]){
     for(int i = 0; i < JOB_COUNT; i++){
         for(int j = i; j < JOB_COUNT; j++){
             if(arr[i].AT < arr[j].AT) continue;
-            if(arr[i].AT == arr[j].AT && arr[i].BT <= arr[j].BT) continue;
+            if(arr[i].AT == arr[j].AT && arr[i].BT > arr[j].BT) continue;
             tmp = arr[i];
             arr[i] = arr[j];
             arr[j] = tmp;
@@ -156,45 +155,40 @@ int main(void){
 }
 
 /* OUTPUT
-   [SJF CPU SCHEDULING]
-   [PS1] Enter arrival time : 1
-   [PS1] Enter Burst time : 5
-   [PS2] Enter arrival time : 3
-   [PS2] Enter Burst time : 2
-   [PS3] Enter arrival time : 4
-   [PS3] Enter Burst time : 1
-   [PS4] Enter arrival time : 7
-   [PS4] Enter Burst time : 5
-   [PS5] Enter arrival time : 0
-   [PS5] Enter Burst time : 4
-   PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)
-   PS5     0           4           4           4           0
-   PS1     1           5           9           8           3
-   PS2     3           2           11          8           6
-   PS3     4           1           12          8           7
-   PS4     7           5           17          10          5
-   Avg. WT : 4.20 ms
-   Avg. TAT : 7.60 ms
-   */
+Enter job count : 3
+[LJF CPU SCHEDULING]
+[PS1] Enter arrival time : 0
+[PS1] Enter Burst time : 4
+[PS2] Enter arrival time : 0
+[PS2] Enter Burst time : 6
+[PS3] Enter arrival time : 1
+[PS3] Enter Burst time : 2
+PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)
+PS2     0           6           6           6           0
+PS1     0           4           10          10          6
+PS3     1           2           12          11          9
+Avg. WT : 5.00 ms
+Avg. TAT : 9.00 ms
+*/
 
 /* OUTPUT
-   [SJF CPU SCHEDULING]
-   [PS1] Enter arrival time : 0
-   [PS1] Enter Burst time : 1
-   [PS2] Enter arrival time : 2
-   [PS2] Enter Burst time : 5
-   [PS3] Enter arrival time : 6
-   [PS3] Enter Burst time : 3
-   [PS4] Enter arrival time : 2
-   [PS4] Enter Burst time : 2
-   [PS5] Enter arrival time : 5
-   [PS5] Enter Burst time : 1
-   PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)
-   PS1     0           1           1           1           0
-   PS4     2           2           4           2           0
-   PS2     2           5           9           7           2
-   PS5     5           1           10          5           4
-   PS3     6           3           13          7           4
-   Avg. WT : 2.00 ms
-   Avg. TAT : 4.40 ms
-   */
+[LJF CPU SCHEDULING]
+[PS1] Enter arrival time : 1
+[PS1] Enter Burst time : 2
+[PS2] Enter arrival time : 3
+[PS2] Enter Burst time : 4
+[PS3] Enter arrival time : 5
+[PS3] Enter Burst time : 0
+[PS4] Enter arrival time : 0
+[PS4] Enter Burst time : 6
+[PS5] Enter arrival time : 0
+[PS5] Enter Burst time : 7
+PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)
+PS5     0           7           7           7           0
+PS4     0           6           13          13          7
+PS1     1           2           15          14          12
+PS2     3           4           19          16          12
+PS3     5           0           19          14          14
+Avg. WT : 9.00 ms
+Avg. TAT : 12.80 ms
+*/
