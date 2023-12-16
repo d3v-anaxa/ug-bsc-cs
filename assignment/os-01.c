@@ -3,30 +3,27 @@
 */
 
 /* ALGO
-   1. Initialize:
-   1.1 Set the current time to 0.
-   1.2 Create a queue to hold the processes.
-   2. Input:
-   2.1 Receive a list of processes with their arrival times and burst times.
-   2.2 Sort the processes based on their arrival times.
-   3. Execution:
-   3.1 While there are processes in the queue:
-   3.2 Dequeue the process from the front of the queue.
-   3.3 Execute the process until completion.
-   3.4 Update the current time to reflect the completion of the process.
-   4. Output:
-   4.1 Display the turnaround time and waiting time for each process.
-   4.2 Calculate and display the average turnaround time and average waiting time.
+1. Initialize:
+1.1 Set the current time to 0.
+1.2 Create a queue to hold the processes.
+2. Input:
+2.1 Receive a list of processes with their arrival times and burst times.
+2.2 Sort the processes based on their arrival times.
+3. Execution:
+3.1 While there are processes in the queue:
+3.2 Dequeue the process from the front of the queue.
+3.3 Execute the process until completion.
+3.4 Update the current time to reflect the completion of the process.
+4. Output:
+4.1 Display the turnaround time and waiting time for each process.
+4.2 Calculate and display the average turnaround time and average waiting time.
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-enum {
-    JOB_COUNT = 5
-};
-
+int JOB_COUNT = 0;
 typedef struct Job {
     int PID, AT, BT, CT, TAT, WT;
 } Job;
@@ -45,10 +42,11 @@ void get_gantt_chart(Job[]);
 
 int test_1(){
     srand(time(0));
+    printf("Enter job count : ");
+    scanf("%d", &JOB_COUNT);
     Job arr[JOB_COUNT];
     printf("[FCFS CPU SCHEDULING]\n");
     create_and_get_table(arr);
-    // get_gantt_chart(arr);
     return 0;
 }
 
@@ -150,50 +148,49 @@ float get_avg_tat(Job arr[]){
     return res;
 }
 
-// TODO: FIX
-void get_gantt_chart(Job arr[]){
-    int _t = 0;
-    printf("Gantt chart :\n");
-    for(int i = 0 ; i < JOB_COUNT; i++){
-        _t = arr[i].BT * 100 / arr[JOB_COUNT - 1].CT;
-        printf(">\033[47;30;01m%s%*d\033[00;00m", "PS", -_t, arr[i].PID );
-    }   printf("\n");
-}
-
 int main(void){
     return test_1();
 }
 
 /* OUTPUT
-   [FCFS CPU SCHEDULING]
-   PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)     
-   PS3     0           5           5           5           0           
-   PS8     0           5           10          10          5           
-   PS4     4           14          24          20          6           
-   PS7     5           5           29          24          19          
-   PS10    6           9           38          32          23          
-   PS9     7           10          48          41          31          
-   PS1     7           1           49          42          41          
-   PS2     8           18          67          59          41          
-   PS6     8           12          79          71          59          
-   PS5     9           8           87          78          70          
-   Avg. WT : 29.50 ms
-   Avg. TAT : 38.20 ms
-*/   
+Enter job count : 5
+[FCFS CPU SCHEDULING]
+[PS1] Enter arrival time : 1
+[PS1] Enter Burst time : 5
+[PS2] Enter arrival time : 1
+[PS2] Enter Burst time : 4
+[PS3] Enter arrival time : 1
+[PS3] Enter Burst time : 3
+[PS4] Enter arrival time : 5
+[PS4] Enter Burst time : 6
+[PS5] Enter arrival time : 0
+[PS5] Enter Burst time : 3
+PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)
+PS5     0           3           3           3           0
+PS2     1           4           7           6           2
+PS3     1           3           10          9           6
+PS1     1           5           15          14          9
+PS4     5           6           21          16          10
+Avg. WT : 5.40 ms
+Avg. TAT : 9.60 ms
+*/
 
 /* OUTPUT
-   [FCFS CPU SCHEDULING]
-   PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)     
-   PS5     0           8           8           8           0           
-   PS1     1           16          24          23          7           
-   PS7     2           4           28          26          22          
-   PS6     4           12          40          36          24          
-   PS4     4           16          56          52          36          
-   PS2     5           11          67          62          51          
-   PS9     6           0           67          61          61          
-   PS8     7           9           76          69          60          
-   PS3     8           10          86          78          68          
-   PS10    9           10          96          87          77          
-   Avg. WT : 40.60 ms
-   Avg. TAT : 50.20 
+Enter job count : 4
+[FCFS CPU SCHEDULING]
+[PS1] Enter arrival time : 0
+[PS1] Enter Burst time : 4
+[PS2] Enter arrival time : 1
+[PS2] Enter Burst time : 4
+[PS3] Enter arrival time : 0
+[PS3] Enter Burst time : 2
+[PS4] Enter arrival time : 1
+[PS4] Enter Burst time : 5
+PID     AT (ms)     BT (ms)     CT (ms)     TAT (ms)    WT (ms)
+PS1     0           4           4           4           0
+PS3     0           2           6           6           4
+PS2     1           4           10          9           5
+PS4     1           5           15          14          9
+Avg. WT : 4.50 ms
+Avg. TAT : 8.25 ms
 */
