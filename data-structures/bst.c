@@ -47,6 +47,15 @@ void rm(bst_node **root){
     }
 }
 
+int height(bst_node *root){
+    int res = 0;
+    if (root) {
+        int left_h = 1 + height(root->left);
+        int right_h = 1 + height(root->right);
+        res = left_h > right_h ? left_h : right_h;
+    }   return res;
+}
+
 void clean(bst_node *root){
     if (root == 0x0) return;
     clean(root->left);
@@ -110,9 +119,11 @@ void test(){
     bst_node *root = 0x0;
     for(int i = 0; i < NODE_COUNT; i++){
         rand() % 2 ? insert(&root, rand() % NODE_COUNT - (NODE_COUNT / 2)) : rm(&root);
+        printf("BST height : %4d\n", height(root));
     }
     traversal(root, PREORDER);
     traversal(root, INORDER);
+    printf("BST height : %4d\n", height(root));
     clean(root);
 }
 
