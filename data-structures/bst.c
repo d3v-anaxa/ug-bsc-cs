@@ -56,6 +56,26 @@ int height(bst_node *root){
     }   return res;
 }
 
+int leaf_nodes(bst_node *root){
+    int count;
+    if (!root) {
+        count = 0;
+    }   else if (root->left == 0x0 && root->right == 0x0) {
+        count = 1;
+    }   else {
+        count = leaf_nodes(root->left) + leaf_nodes(root->right);
+    }   return count;
+}
+
+int non_leaf_nodes(bst_node *root){
+    int count;
+    if (!root || (root->left == 0x0 && root->right == 0x0)){
+        count = 0;
+    }   else {
+        count = 1 + non_leaf_nodes(root->left) + non_leaf_nodes(root->right);
+    }   return count;
+}
+
 void clean(bst_node *root){
     if (root == 0x0) return;
     clean(root->left);
@@ -127,7 +147,20 @@ void test(){
     clean(root);
 }
 
+void test_2(){
+    srand(time(0));
+    bst_node *root = 0x0;
+    for(int i = 0; i < NODE_COUNT; i++){
+        insert(&root, rand() % NODE_COUNT - (NODE_COUNT / 2));
+        printf("BST height : %4d\n", height(root));
+        printf("LEAF NODES : %4d\n", leaf_nodes(root));
+        printf("NON-LEAF NODES : %4d\n", non_leaf_nodes(root));
+    }
+    traversal(root, POSTORDER);
+    clean(root);
+}
+
 int main(void){
-    test();
+    test_2();
     return 0;
 }
