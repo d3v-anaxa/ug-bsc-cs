@@ -14,7 +14,7 @@ void push(Stack **top, int val){
         tmp->val = val;
         tmp->next = *top;
         *top = tmp;
-        printf("%-10s%4d\n", "[INSERTED]", val);
+        printf("%-10s%4d\n", "[PUSH]", val);
     }
 }
 
