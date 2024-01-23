@@ -1,0 +1,119 @@
+** A digital signal is a composite analog signal with an ifinite bandwidth.
+
+ _____                              _         _             
+|_   _| __ __ _ _ __  ___ _ __ ___ (_)___ ___(_) ___  _ __  
+  | || '__/ _` | '_ \/ __| '_ ` _ \| / __/ __| |/ _ \| '_ \ 
+  | || | | (_| | | | \__ \ | | | | | \__ \__ \ | (_) | | | |
+  |_||_|  \__,_|_| |_|___/_| |_| |_|_|___/___/_|\___/|_| |_|
+                                                            
+ _                       _                           _   
+(_)_ __ ___  _ __   __ _(_)_ __ _ __ ___   ___ _ __ | |_ 
+| | '_ ` _ \| '_ \ / _` | | '__| '_ ` _ \ / _ \ '_ \| __|
+| | | | | | | |_) | (_| | | |  | | | | | |  __/ | | | |_ 
+|_|_| |_| |_| .__/ \__,_|_|_|  |_| |_| |_|\___|_| |_|\__|
+            |_|                                          
+
+Transmission Impairment -----> Attenuation
+                           |-> Distortion
+                           |-> Noise
+                           |-> Delay
+                           |-> Jitter
+                           |-> Interference 
+
+Attenuation:
+    Definition: Attenuation refers to the decrease in signal strength as it travels over a distance in a transmission medium.
+    Cause: It occurs due to factors such as resistance, scattering, and absorption in the transmission medium.
+    Effect: Weaker signals may result in a loss of information and reduced signal quality.
+            = 10 log_10 (P_2/P_1) [; >0 in case of attenuation]
+
+Distortion:
+    Definition: Distortion involves changes in the shape of the signal waveform.
+    Cause: It can be caused by factors such as frequency-dependent attenuation, multipath propagation, and non-linearities in the transmission medium.
+    Effect: Distorted signals may lead to misinterpretation of the transmitted information.
+
+Noise:
+    Definition: Noise is an unwanted random signal that is added to the original signal during transmission.
+    Cause: Various sources, including electronic components, thermal effects, and external interference, can introduce noise.
+    Effect: Noise can degrade the signal-to-noise ratio, making it harder to distinguish the desired signal from the unwanted background noise.
+
+Delay:
+    Definition: Delay refers to the time it takes for a signal to travel from the sender to the receiver.
+    Cause: Delay can be caused by the finite speed of signal propagation in a medium.
+    Effect: Excessive delay can impact real-time applications and cause synchronization issues in communication systems.
+
+Jitter:
+    Definition: Jitter is the variation in the timing of signal pulses.
+    Cause: Jitter can result from irregularities in the transmission medium, clocking errors, or interference.
+    Effect: In digital communication, jitter can lead to timing errors and affect the accuracy of data reception.
+
+Interference:
+    Definition: Interference occurs when external signals disrupt the normal transmission of the desired signal.
+    Cause: Sources of interference include electromagnetic interference (EMI) and radio frequency interference (RFI).
+    Effect: Interference can cause signal corruption and decrease the overall reliability of the communication system.
+
+SNR = Avg. Sig. Pow / Avg. Noise Pow
+SNR_(dB) = 10 log_10 (SNR)
+         = 10 log_10 (P_2/P_1)
+         = 20 log_10 (V_2/V_1)
+Bit Rate:
+    Definition: Bit rate, also known as data rate or digital bandwidth, is the number of bits transmitted per unit of time. It represents the rate at which information is conveyed over a communication channel and is typically measured in bits per second (bps).
+    Formula: If NN is the total number of bits transmitted and TT is the total time taken, then the bit rate (RR) can be calculated as R=N/T.
+    Example: A communication system that transmits 1000 bits in 1 second has a bit rate of 1000 bps.
+    Significance: Bit rate is crucial in digital communication as it determines how much information can be transmitted within a given time frame.
+
+Baud Rate:
+    Definition: Baud rate, also referred to as symbol rate or modulation rate, represents the number of signal changes (symbols or states) per second in a communication system. It is associated with modulation techniques and is expressed in baud.
+    Formula: Baud rate is not directly related to the number of bits but rather to the number of signal changes. For example, if each signal change represents two bits (binary phase-shift keying or QPSK modulation), then the bit rate would be twice the baud rate.
+    Example: In a communication system using binary phase-shift keying (BPSK) with a baud rate of 1000 baud, the bit rate would be 1000 bps if each symbol represents one bit.
+    Significance: Baud rate is relevant in analog and digital communication systems where modulation is used to encode digital information onto an analog carrier signal.
+
+**Nyquist Bit Rate = 2 x BandWidth x log_2 L    [; L-> No. of signal levels used to seperate data]
+
+Shannon Capacity : Determines the theoritical highest data rate for a noisy channel.
+                   Capacity = Bandwidth x log_2 (1 + SNR) 
+
+                   _               _              _ _       _ _        _ 
+  __ _ _ __   __ _| | ___   __ _  | |_ ___     __| (_) __ _(_) |_ __ _| |
+ / _` | '_ \ / _` | |/ _ \ / _` | | __/ _ \   / _` | |/ _` | | __/ _` | |
+| (_| | | | | (_| | | (_) | (_| | | || (_) | | (_| | | (_| | | || (_| | |
+ \__,_|_| |_|\__,_|_|\___/ \__, |  \__\___/   \__,_|_|\__, |_|\__\__,_|_|
+                           |___/                      |___/              
+
+                            /-> PAM SIGNAL
+Analog Signal ---> Sampling ---> Quantizing ---> Encoding ---> Digital data
+                                            \-> QUANTIZED SIGNAL
+
+*Delta Modulation :
+
+Analog Signal ---==> Comparator -------------------------------> Digital Data
+                ||                                      |
+                ||-------------------------------------||
+                ||-- Delay Unit <--- Starecase Maker <==|
+
+/* DELTA MODULATOR */
+
+Digital Signal ---==> Starecase Maker ---> Low-pass filter ---> Analog Data
+                 |                   |
+                 |--- Delay Unit <---|
+
+/* DELTA DEMODULATOR */
+
+     _ _       _ _        _   _              _ _       _ _        _ 
+  __| (_) __ _(_) |_ __ _| | | |_ ___     __| (_) __ _(_) |_ __ _| |
+ / _` | |/ _` | | __/ _` | | | __/ _ \   / _` | |/ _` | | __/ _` | |
+| (_| | | (_| | | || (_| | | | || (_) | | (_| | | (_| | | || (_| | |
+ \__,_|_|\__, |_|\__\__,_|_|  \__\___/   \__,_|_|\__, |_|\__\__,_|_|
+         |___/                                   |___/              
+
+Line Coding Scheme
+                 V
+                 |---> Unipolar ---> Non-Return-to-Zero
+                 |
+                 |---> Polar ----|---> Non-Return-to-Zero-Level
+                 |               |---> Non-Return-to-Zero-Invert
+                 |               |---> Biphase ---> Manchester
+                 |                        |---> Differential Manchester
+                 |
+                 |---> Bipolar --|---> AMI
+                                 |---> Pseudoternary
+
