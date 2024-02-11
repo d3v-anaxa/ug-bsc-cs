@@ -1,7 +1,21 @@
 TARGET_DIRECTORY="build"
 
-rm $TARGET_DIRECTORY/*;
+if [ -x $TARGET_DIRECTORY ] ; then 
+    echo "Found '$TARGET_DIRECTORY/' dir";
+else
+    echo "Created '$TARGET_DIRECTORY/' dir";
+    mkdir "$TARGET_DIRECTORY";
+fi
 
+if [ $(find $TARGET_DIRECTORY -type f | wc -l) -gt 0 ]; then
+    echo "Cleared '$TARGET_DIRECTORY/' dir"
+    rm $TARGET_DIRECTORY/*;
+fi
+
+set out;
 for f in $(ls *.c); do 
-    gcc -o "$TARGET_DIRECTORY/${f%.c}.out" $f; 
+    out="$TARGET_DIRECTORY/${f%.c}.out";
+    gcc -o $out $f; 
+    echo "'$out' -> Compiled Successfully!"
 done
+unset out;
