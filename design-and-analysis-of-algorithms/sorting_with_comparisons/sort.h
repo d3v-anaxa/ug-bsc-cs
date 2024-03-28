@@ -9,5 +9,5 @@ static int comparisons = 0;
 #include "insertionSort.c"
 #include "mergeSort.c"
 #include "quickSort.c"
+#include "countingSort.c"
 #endif
-

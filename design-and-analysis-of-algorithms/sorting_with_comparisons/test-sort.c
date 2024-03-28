@@ -5,6 +5,7 @@ enum {
     MERGE,
     HEAP,
     QUICK,
+    COUNTING,
     ALGO_COUNT,
 }   sort_methods_t;
 // Array display method
@@ -35,11 +36,13 @@ int main(void){
         [MERGE] = merge_sort,
         [HEAP] = heap_sort,
         [QUICK] = quick_sort,
+        [COUNTING] = counting_sort,
     };
     // Display OG array
     display(array, SIZE);
     // Performing all sorting algorithms
     for(int i = 0; i < ALGO_COUNT; i++){
+        printf("%s\n", "---");
         sort_algo[i](array, SIZE);
         display(array, SIZE);
         // Returning to OG state
